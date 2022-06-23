@@ -41,3 +41,19 @@ afterEach(() => {
  test('test that App component renders different colors for past due events', () => {
   render(<App />);
  });
+
+ test('test that App component renders different colors for past due events', () => {
+  render(<App />);
+  
+  const inputTask = screen.getByRole("textbox",{name: /Add New Item/i})
+  const inputDate = screen.getByRole("textbox",{name: /Due Date/i})
+  const button = screen.getByRole("button",{name: /Add/i})
+  fireEvent.change(inputTask, {target:{value: "Project 3"}})
+  fireEvent.change(inputDate, {target:{value: "06/24/2022"}})
+  fireEvent.click(button)
+  const check = screen.getByText(/Project 3/i)
+  expect(check).toBeInTheDocument();
+
+
+
+ });
